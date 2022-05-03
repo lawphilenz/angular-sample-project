@@ -23,7 +23,7 @@ export class DialogBoxComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
-    //@Optional() is used to prevent error if no data is passed
+    
     @Optional() @Inject(MAT_DIALOG_DATA) public data: SampleData) {
     console.log(data);
     this.local_data = {...data};

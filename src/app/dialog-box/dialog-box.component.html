@@ -1,7 +1,8 @@
   <div mat-dialog-content>
 
-    <div *ngIf="action != 'Delete'; else elseTemplate">
+    <div *ngIf="action != 'Delete'; else deleteTemplate">
     
+      <!-- Name Input -->
       <mat-form-field appearance="fill" style="width:100%">
         <mat-label>Name</mat-label>
         <input matInput [(ngModel)]="local_data.name">
@@ -9,6 +10,7 @@
   
       <br>
 
+      <!-- Profession Input -->
       <mat-form-field appearance="fill" style="width:100%">
         <mat-label>Profession</mat-label>
         <input matInput [(ngModel)]="local_data.profession">
@@ -16,41 +18,44 @@
   
       <br>
 
+      <!-- Birthday Input -->
       <mat-form-field appearance="fill" style="width:100%">
-      <mat-label>Birthday</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="local_data.birthday">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+        <mat-label>Birthday</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="local_data.birthday">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
       <br><br>
 
+      <!-- Gender Input -->
       <label id="example-radio-group-label">Gender</label><br>
       <mat-radio-group aria-label="Select an option" [(ngModel)]="local_data.gender">
-      <mat-radio-button value="Male">Male</mat-radio-button>&nbsp;
-      <mat-radio-button value="Female">Female</mat-radio-button>
+        <mat-radio-button value="Male">Male</mat-radio-button>&nbsp;
+        <mat-radio-button value="Female">Female</mat-radio-button>
       </mat-radio-group>
 
       <br><br>
 
+      <!-- Country Input -->
       <mat-form-field appearance="fill" style="width:100%">
-      <mat-label>Country</mat-label>
-      <mat-select [(ngModel)]="local_data.country">
-      <mat-option value="Philippines">Philippines</mat-option>
-      <mat-option value="Australia">Australia</mat-option>
-      <mat-option value="Australia">New Zealand</mat-option>
-      <mat-option value="Australia">Singapore</mat-option>
-      <mat-option value="Australia">Canada</mat-option>
-      <mat-option value="Australia">USA</mat-option>
-      </mat-select>
+        <mat-label>Country</mat-label>
+        <mat-select [(ngModel)]="local_data.country">
+          <mat-option value="Philippines">Philippines</mat-option>
+          <mat-option value="Australia">Australia</mat-option>
+          <mat-option value="New Zealand">New Zealand</mat-option>
+          <mat-option value="Singapore">Singapore</mat-option>
+          <mat-option value="Canada">Canada</mat-option>
+          <mat-option value="USA">USA</mat-option>
+        </mat-select>
       </mat-form-field>
 
       <br>
     
     </div>
 
-    <ng-template #elseTemplate>
+    <ng-template #deleteTemplate>
       Are you sure you want to delete this data?
     </ng-template>
 
