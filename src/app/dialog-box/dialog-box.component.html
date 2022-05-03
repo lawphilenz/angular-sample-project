@@ -3,32 +3,40 @@
     <div *ngIf="action != 'Delete'; else elseTemplate">
     
       <mat-form-field appearance="fill" style="width:100%">
-        <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="local_data.name">
+        <mat-label>First Name</mat-label>
+        <input matInput [(ngModel)]="local_data.firstName">
+      </mat-form-field>
+  
+      <br>
+
+      <mat-form-field appearance="fill" style="width:100%">
+        <mat-label>Last Name</mat-label>
+        <input matInput [(ngModel)]="local_data.lastName">
       </mat-form-field>
   
       <br>
 
       <mat-form-field appearance="fill" style="width:100%">
       <mat-label>Birthday</mat-label>
-      <input matInput [matDatepicker]="picker">
+      <input matInput [matDatepicker]="picker" [value]="local_data.birthday">
+      <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <br>
+      <br><br>
 
       <label id="example-radio-group-label">Gender</label><br>
-      <mat-radio-group aria-label="Select an option">
-      <mat-radio-button value="1">Male</mat-radio-button>&nbsp;
-      <mat-radio-button value="2">Female</mat-radio-button>
+      <mat-radio-group aria-label="Select an option" [(ngModel)]="local_data.gender">
+      <mat-radio-button value="Male">Male</mat-radio-button>&nbsp;
+      <mat-radio-button value="Female">Female</mat-radio-button>
       </mat-radio-group>
 
       <br><br>
 
       <mat-form-field appearance="fill" style="width:100%">
       <mat-label>Country</mat-label>
-      <mat-select>
+      <mat-select [(ngModel)]="local_data.country">
       <mat-option value="Philippines">Philippines</mat-option>
       <mat-option value="Australia">Australia</mat-option>
       <mat-option value="Australia">New Zealand</mat-option>
@@ -37,15 +45,6 @@
       <mat-option value="Australia">USA</mat-option>
       </mat-select>
       </mat-form-field>
-
-      <br>
-
-      <label id="example-radio-group-label">Languages</label><br>
-      <section class="example-section">
-      <mat-checkbox class="example-margin">.NET Framework</mat-checkbox><br>
-      <mat-checkbox class="example-margin">PHP</mat-checkbox><br>
-      <mat-checkbox class="example-margin">Java</mat-checkbox>
-      </section>
 
       <br>
     

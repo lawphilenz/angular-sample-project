@@ -1,23 +1,24 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import {DatePipe} from '@angular/common';
 
 export interface SampleData {
   id: number;
-  name: string;
-  birthday: string;
+  firstName: string;
+  lastName: string;
+  birthday: any;
   gender: string;
   country: string;
-  languages: string;
 }
 
 const ELEMENT_DATA: SampleData[] = [
-   {id: 1, name: 'Lawrence Philip Enriquez', birthday: '10/23/1993', 
-   gender: 'Male', country: 'Philippines', languages: '.NET Framework,PHP'},
-   {id: 2, name: 'Lawrence Philip Enriquez', birthday: '10/23/1993', 
-   gender: 'Male', country: 'Philippines', languages: '.NET Framework,PHP'},
-   {id: 3, name: 'Lawrence Philip Enriquez', birthday: '10/23/1993', 
-   gender: 'Male', country: 'Philippines', languages: '.NET Framework,PHP'}
+   {id: 1, firstName: 'Lawrence Philip', lastName: 'Enriquez', birthday: new Date(), 
+   gender: 'Male', country: 'Philippines'},
+   {id: 2, firstName: 'Lawrence Philip', lastName: 'Enriquez', birthday: new Date(), 
+   gender: 'Male', country: 'Philippines'},
+   {id: 3, firstName: 'Lawrence Philip', lastName: 'Enriquez', birthday: new Date(), 
+   gender: 'Male', country: 'Philippines'}
 ];
 
 @Component({
@@ -26,17 +27,17 @@ const ELEMENT_DATA: SampleData[] = [
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  displayedColumns: string[] = ['id', 'name', 'birthday', 'gender', 'country', 'languages', 'action'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'birthday', 'gender', 'country', 'action'];
   dataSource = ELEMENT_DATA;
 
   @ViewChild('mytable', {static: true}) mytable:any;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private datePipe: DatePipe) {}
 
   openDialog(action: any, obj: { action: any; }) {
     obj.action = action;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '400px',
+      width: '345px',
       data:obj
     });
 
@@ -55,11 +56,11 @@ export class AppComponent {
     var d = new Date();
     this.dataSource.push({
       id:d.getTime(),
-      name:row_obj.name,
+      firstName:row_obj.firstName,
+      lastName:row_obj.lastName,
       birthday:row_obj.birthday,
       gender:row_obj.gender,
       country:row_obj.country,
-      languages:row_obj.languages
     });
     this.mytable.renderRows();
     
@@ -68,7 +69,8 @@ export class AppComponent {
   updateRowData(row_obj:any){
     this.dataSource = this.dataSource.filter((value,key)=>{
       if(value.id == row_obj.id){
-        value.name = row_obj.name;
+        value.firstName = row_obj.firstName;
+        value.birthday = row_obj.birthday;
       }
       return true;
     });
